@@ -24,6 +24,24 @@
               });
               return promise;
           },
+          logout: function(userId) {
+            promise = $http({
+              method: 'POST',
+              url: baseUrl + 'logout',
+              params: { userId: userId },
+            }).success(function (response) {
+              if (response.code === 0) {
+                toaster.pop('success', '您已成功登出');
+                $location.path('/');
+                $rootScope.currentUser = '';
+              } else {
+                toaster.pop('warning', response.msg);
+              }
+            }).error(function (data, status) {
+              toaster.pop('warning', '请稍后再试');
+            });
+            return promise;
+          },
           register: function(user) {
             promise =  $http({
               method: 'POST',
