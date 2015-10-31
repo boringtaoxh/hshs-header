@@ -39,7 +39,8 @@
               if (response.code === 0) {
                 toaster.pop('success', '您已成功注册');
                 $location.path('/');
-                $('#ModalRegister').modal('hide');
+                $('#ModalSignup').modal('hide');
+                $('#ModalLogin').modal('show');
               } else {
                 toaster.pop('warning', response.msg);
               }
@@ -57,6 +58,7 @@
               }
             }).success(function (response) {
               if (response.code === 0) {
+                console.log(response);
                 toaster.pop('success', '注册码已成功发送');
               } else {
                 toaster.pop('warning', response.msg);
